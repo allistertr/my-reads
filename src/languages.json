@@ -1,0 +1,20 @@
+{
+  "en": {
+    "LANGUAGE_KEY": "en",
+    "LANGUAGE_LABEL": "English",
+    "HELLO_WORLD": "Hello World!",
+    "WELCOME": "Welcome!"
+  },
+  "pt": {
+    "LANGUAGE_KEY": "pt",
+    "LANGUAGE_LABEL": "Português",
+    "HELLO_WORLD": "Olá Mundo!",
+    "WELCOME": "Bem vindo!"
+  },
+  "es": {
+    "LANGUAGE_KEY": "es",
+    "LANGUAGE_LABEL": "Español",
+    "HELLO_WORLD": "¡Hola mundo!",
+    "WELCOME": "¡Bienvenido!"
+  }
+}
