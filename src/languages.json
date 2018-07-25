@@ -2,19 +2,37 @@
   "en": {
     "LANGUAGE_KEY": "en",
     "LANGUAGE_LABEL": "English",
+    "BOOK": "Book",
+    "BOOKS": "Books",
     "HELLO_WORLD": "Hello World!",
-    "WELCOME": "Welcome!"
+    "WELCOME": "Welcome!",
+    "NONE": "None",
+    "CURRENTLY_READING": "Currently reading",
+    "READ": "Read",
+    "WANT_TO_READ": "Whant to read"
   },
   "pt": {
     "LANGUAGE_KEY": "pt",
     "LANGUAGE_LABEL": "Português",
+    "BOOK": "Livro",
+    "BOOKS": "Livros",
     "HELLO_WORLD": "Olá Mundo!",
-    "WELCOME": "Bem vindo!"
+    "WELCOME": "Bem vindo!",
+    "NONE": "Nenhum",
+    "CURRENTLY_READING": "Lendo atualmente",
+    "READ": "Lido",
+    "WANT_TO_READ": "Quero ler"
   },
   "es": {
     "LANGUAGE_KEY": "es",
     "LANGUAGE_LABEL": "Español",
+    "BOOK": "Libro",
+    "BOOKS": "Libros",
     "HELLO_WORLD": "¡Hola mundo!",
-    "WELCOME": "¡Bienvenido!"
+    "WELCOME": "¡Bienvenido!",
+    "NONE": "Ninguna",
+    "CURRENTLY_READING": "Leyendo actualmente",
+    "READ": "Leído",
+    "WANT_TO_READ": "Quiero leer"
   }
 }
