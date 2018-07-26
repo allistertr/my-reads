@@ -42,21 +42,17 @@ function Shelves(props) {
   return (
     <div className={classes.root}>
       {shelves.map(shelf => (
-        <div>
+        <div key={shelf.name}>
           <p>{shelf.label}</p>
           <Grid container spacing={24}>
               {shelf.books.map(book => (
-                <Grid item key={book.name}>
+                <Grid item key={book.title}>
                   <Book book={book} />
                 </Grid>
               ))}
           </Grid>
         </div>
       ))}
-        {/* <Grid item xs={12}> */}
-
-        {/* <Divider />
-        <Divider light /> */}
     </div>
   );
 }

@@ -19,19 +19,19 @@ class App extends Component {
       translate: languages['en'],
       books: [
         {
-          name: 'Test None',
+          title: 'Test None',
           shelf: 'none'
         },
         {
-          name: 'Test currentlyReading',
+          title: 'Test currentlyReading',
           shelf: 'currentlyReading'
         },
         {
-          name: 'Test read',
+          title: 'Test read',
           shelf: 'read'
         },
         {
-          name: 'Test wantToRead',
+          title: 'Test wantToRead',
           shelf: 'wantToRead'
         }
       ]
@@ -40,7 +40,10 @@ class App extends Component {
     this.languagesLabels = Object.keys(languages).map(prototype => ({ key: prototype, label: languages[prototype].LANGUAGE_LABEL }));
     console.log(this.languagesLabels)
     BooksAPI.getAll()
-      .then(books => console.log(books))
+      .then(books => {
+        this.setState({books})
+        console.log(books)
+      });
     console.log(BooksAPI)
   }
 
