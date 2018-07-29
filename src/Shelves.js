@@ -9,52 +9,78 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Book from './Book';
 
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  grid: {
-    flexGrow: 1,
-  }
+
 });
 
-function Shelves(props) {
-  const { classes, books, translate } = props;
-  let shelves = [
-    {
-      name: 'currentlyReading',
-      label: translate.CURRENTLY_READING
-    },
-    {
-      name: 'read',
-      label: translate.READ
-    },
-    {
-      name: 'wantToRead',
-      label: translate.WANT_TO_READ
-    }
-  ];
+class Shelves extends React.Component {
+  state = {
+    shelves: [
+      {
+        name: 'currentlyReading',
+        key: 'CURRENTLY_READING',
+        expanded: true
+      },
+      {
+        name: 'read',
+        key: 'READ',
+        expanded: true
+      },
+      {
+        name: 'wantToRead',
+        key: 'WANT_TO_READ',
+        expanded: true
+      }
+    ]
+  };
 
-  shelves.forEach(shelf => {
-    shelf.books = books.filter(book => book.shelf === shelf.name);
-  });
+  changePanelExpansion = panelKey => {
+    this.setState(state => ({
+      shelves: state.shelves.map(shelf => {
+        if (shelf.key === panelKey) shelf.expanded = !shelf.expanded;
+        return shelf;
+      })
+    }));
+  };
 
-  return (
-    <div className={classes.root}>
-      {shelves.map(shelf => (
-        <div key={shelf.name}>
-          <p>{shelf.label}</p>
-          <Grid container spacing={24}>
-              {shelf.books.map(book => (
-                <Grid item key={book.title}>
-                  <Book book={book} />
-                </Grid>
-              ))}
-          </Grid>
-        </div>
-      ))}
-    </div>
-  );
+  render() {
+    const { shelves } = this.state;
+    const { classes, books, translate } = this.props;
+
+    shelves.forEach(shelf => {
+      shelf.books = books.filter(book => book.shelf === shelf.name);
+    });
+
+    return (
+      <div>
+        {shelves.map(shelf => (
+          <ExpansionPanel key={shelf.name} expanded={shelf.expanded} onChange={() => { this.changePanelExpansion(shelf.key) }}>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography variant="title" gutterBottom>
+                {translate[shelf.key]}
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Grid container >
+                {shelf.books.map(book => (
+                  <Grid item key={book.id} style={{ margin: '10px auto' }}>
+                    <Book book={book} />
+                  </Grid>
+                ))}
+              </Grid>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        ))}
+      </div>
+    );
+  }
+
 }
 
 Shelves.propTypes = {

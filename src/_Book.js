@@ -69,8 +69,29 @@ class Book extends React.Component {
 
           <CardContent>
             <img style={{width: '100%'}} src={book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "/static/images/cards/paella.jpg"} alt=""/>
+            <Typography component="p">
+              This impressive paella is a perfect party dish and a fun meal to cook together with
+              your guests. Add 1 cup of frozen peas along with the mussels, if you like.
+            </Typography>
           </CardContent>
-
+          <CardActions className={classes.actions} disableActionSpacing>
+            <IconButton aria-label="Add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="Share">
+              <ShareIcon />
+            </IconButton>
+            <IconButton
+              className={classnames(classes.expand, {
+                [classes.expandOpen]: this.state.expanded,
+              })}
+              onClick={this.handleExpandClick}
+              aria-expanded={this.state.expanded}
+              aria-label="Show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
 

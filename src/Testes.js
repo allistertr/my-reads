@@ -45,9 +45,8 @@ class App extends Component {
       .then(books => {
         let newBookTest = JSON.parse(JSON.stringify(books[0]));
         newBookTest.imageLinks.thumbnail = 'https://s1.static.brasilescola.uol.com.br/artigos/Ra%C3%A7as-de-cachorros.jpg?i=https://brasilescola.uol.com.br/upload/e/Ra%C3%A7as-de-cachorros.jpg&w=600&h=350&c=FFFFFF&t=1'
-        newBookTest.id = '....1'
         books.push(newBookTest)
-        this.setState({ books })
+        this.setState({books})
         console.log(books)
       });
     console.log(BooksAPI)
@@ -61,8 +60,44 @@ class App extends Component {
     let { translate, books } = this.state;
     return (
       <div>
-        <MenuAppBar translate={translate} changeLanguage={this.changeLanguage} />
+        <MenuAppBar />
+        <Grid
+          container
+          // spacing={16}
+          // alignItems={alignItems}
+          direction='column'
+        // justify={justify}
+        >
+          <Shelves books={books} translate={translate} />
+          <TextField
+            id="select-currency"
+            select
+            value={this.state.translate.LANGUAGE_KEY}
+            onChange={(event) => this.changeLanguage(event.target.value)}
+            margin="normal"
+          >
+            {this.languagesLabels.map(option => (
+              <MenuItem key={option.key} value={option.key}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
 
+          <input
+            accept=".json"
+            style={{
+              display: 'none',
+            }}
+            id="contained-button-file"
+            multiple
+            type="file"
+          />
+          <label htmlFor="contained-button-file">
+            <Button color="primary" variant="contained" component="span" >
+              Upload
+            </Button>
+          </label>
+        </Grid>
         <Route exact path="/" render={({ history }) => (
           <div>
             <p>
@@ -71,7 +106,6 @@ class App extends Component {
             <Link
               to="/search"
             >Search</Link>
-            <Shelves books={books} translate={translate} />
             <Button variant="contained" color="primary" onClick={() => history.push('/search')}>
               Test
             </Button>
@@ -87,22 +121,6 @@ class App extends Component {
             >Home</Link>
           </div>
         )} />
-
-        <TextField
-          id="select-currency"
-          select
-          value={this.state.translate.LANGUAGE_KEY}
-          onChange={(event) => this.changeLanguage(event.target.value)}
-          margin="normal"
-        >
-          {this.languagesLabels.map(option => (
-            <MenuItem key={option.key} value={option.key}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-
-
       </div>
     );
   }

@@ -2,6 +2,8 @@
   "en": {
     "LANGUAGE_KEY": "en",
     "LANGUAGE_LABEL": "English",
+    "CHANGE_LANGUAGE": "Change language",
+    "MY_READS": "My Reads",
     "BOOK": "Book",
     "BOOKS": "Books",
     "HELLO_WORLD": "Hello World!",
@@ -9,11 +11,16 @@
     "NONE": "None",
     "CURRENTLY_READING": "Currently reading",
     "READ": "Read",
-    "WANT_TO_READ": "Whant to read"
+    "WANT_TO_READ": "Whant to read",
+    "PROFILE": "Profile",
+    "SEARCH_BOOKS": "Search books",
+    "ADD_BOOK": "Add Book"
   },
   "pt": {
     "LANGUAGE_KEY": "pt",
     "LANGUAGE_LABEL": "Português",
+    "CHANGE_LANGUAGE": "Alterar idioma",
+    "MY_READS": "Minhas Leituras",
     "BOOK": "Livro",
     "BOOKS": "Livros",
     "HELLO_WORLD": "Olá Mundo!",
@@ -21,11 +28,16 @@
     "NONE": "Nenhum",
     "CURRENTLY_READING": "Lendo atualmente",
     "READ": "Lido",
-    "WANT_TO_READ": "Quero ler"
+    "WANT_TO_READ": "Quero ler",
+    "PROFILE": "Perfil",
+    "SEARCH_BOOKS": "Pesquisar Livros",
+    "ADD_BOOK": "Adicionar Livro"
   },
   "es": {
     "LANGUAGE_KEY": "es",
     "LANGUAGE_LABEL": "Español",
+    "CHANGE_LANGUAGE": "Cambiar idioma",
+    "MY_READS": "Mis Lecturas",
     "BOOK": "Libro",
     "BOOKS": "Libros",
     "HELLO_WORLD": "¡Hola mundo!",
@@ -33,6 +45,9 @@
     "NONE": "Ninguna",
     "CURRENTLY_READING": "Leyendo actualmente",
     "READ": "Leído",
-    "WANT_TO_READ": "Quiero leer"
+    "WANT_TO_READ": "Quiero leer",
+    "PROFILE": "Perfil",
+    "SEARCH_BOOKS": "Buscar libros",
+    "ADD_BOOK": "Añadir libro"
   }
 }
