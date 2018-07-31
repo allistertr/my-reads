@@ -1,0 +1,15 @@
+{
+  "currentProfile": "2018-07-31T09:41:48.489Z",
+  "profiles": {
+    "2018-07-31T09:41:48.489Z": {
+      "name": "João",
+      "language": "en",
+      "books": []
+    },
+    "2018-07-31T09:41:49.601Z": {
+      "name": "Pedro",
+      "language": "pt",
+      "books": []
+    }
+  }
+}

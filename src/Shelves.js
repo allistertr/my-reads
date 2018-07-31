@@ -60,22 +60,26 @@ class Shelves extends React.Component {
     return (
       <div>
         {shelves.map(shelf => (
-          <ExpansionPanel key={shelf.name} expanded={shelf.expanded} onChange={() => { this.changePanelExpansion(shelf.key) }}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography variant="title" gutterBottom>
-                {translate[shelf.key]}
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Grid container >
-                {shelf.books.map(book => (
-                  <Grid item key={book.id} style={{ margin: '10px auto' }}>
-                    <Book book={book} />
-                  </Grid>
-                ))}
-              </Grid>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
+          <div key={shelf.key} >
+            <ExpansionPanel expanded={shelf.expanded} onChange={() => { this.changePanelExpansion(shelf.key) }}>
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <div style={{borderBottom: '1px solid', borderColor: 'grey', position: 'relative', top: 1, width:'100%'}}>
+                  <Typography variant="title" gutterBottom>
+                    {translate[shelf.key]}
+                  </Typography>
+                </div>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Grid container alignItems="center" justify="center" spacing={16}>
+                  {shelf.books.map(book => (
+                    <Grid item key={book.id} >
+                      <Book book={book} translate={translate} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          </div>
         ))}
       </div>
     );

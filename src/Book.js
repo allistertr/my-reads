@@ -52,7 +52,7 @@ class Book extends React.Component {
   };
 
   render() {
-    const { classes, book } = this.props;
+    const { classes, book, translate } = this.props;
 
     return (
       <div>
@@ -68,7 +68,7 @@ class Book extends React.Component {
           />
 
           <CardContent>
-            <img style={{width: '100%'}} src={book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "/static/images/cards/paella.jpg"} alt=""/>
+            <img style={{width: '100%'}} src={book.imageUrl || translate.NO_IMAGE_URL} alt=""/>
           </CardContent>
 
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>

@@ -6,37 +6,29 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import languages from './languages.json';
-import * as BooksAPI from './BooksAPI'
+import Profiles from './Profiles';
+import * as BooksAPI from './BooksAPI';
+import * as BookFactory from './BookFactory';
+import * as StorageService from './StorageService';
 import { prototype } from 'react-transition-group/TransitionGroup';
 
 import MenuAppBar from './MenuAppBar';
 
 import Shelves from './Shelves';
 
+const DEFAULT_LANGUAGE_KEY = 'en'
+
 class App extends Component {
 
   constructor() {
     super();
+    this.data = StorageService.getData();
     this.state = {
-      translate: languages['en'],
-      books: [
-        {
-          title: 'Test None',
-          shelf: 'none'
-        },
-        {
-          title: 'Test currentlyReading',
-          shelf: 'currentlyReading'
-        },
-        {
-          title: 'Test read',
-          shelf: 'read'
-        },
-        {
-          title: 'Test wantToRead',
-          shelf: 'wantToRead'
-        }
-      ]
+      translate: languages[DEFAULT_LANGUAGE_KEY],
+
+      data: StorageService.getData(),
+      currentProfile: this.data.currentProfile,
+      books: []
     };
 
     this.languagesLabels = Object.keys(languages).map(prototype => ({ key: prototype, label: languages[prototype].LANGUAGE_LABEL }));
@@ -46,7 +38,8 @@ class App extends Component {
         let newBookTest = JSON.parse(JSON.stringify(books[0]));
         newBookTest.imageLinks.thumbnail = 'https://s1.static.brasilescola.uol.com.br/artigos/Ra%C3%A7as-de-cachorros.jpg?i=https://brasilescola.uol.com.br/upload/e/Ra%C3%A7as-de-cachorros.jpg&w=600&h=350&c=FFFFFF&t=1'
         newBookTest.id = '....1'
-        books.push(newBookTest)
+        books.push(newBookTest);
+        books = books.map(book => BookFactory.create(book));
         this.setState({ books })
         console.log(books)
       });
@@ -57,14 +50,36 @@ class App extends Component {
     this.setState({ translate: languages[language] });
   };
 
+  getLanguageByCurrentProfile = data => {
+    if (!data)
+      return languages[DEFAULT_LANGUAGE_KEY];
+
+    const languageKey = data.profiles[data.currentProfile].language || DEFAULT_LANGUAGE_KEY;
+    return languages[languageKey];
+  };
+
+  saveData = data => {
+    StorageService.saveData(data);
+    this.setState({ data, translate: this.getLanguageByCurrentProfile(data) });
+  }
+
   render() {
-    let { translate, books } = this.state;
+    let { translate, data } = this.state;
+    let profile, books = [];
+
+    if (data) {
+      console.log('data', data)
+      profile = data.profiles[data.currentProfile];
+      books = profile.books;
+    }
+
     return (
       <div>
         <MenuAppBar translate={translate} changeLanguage={this.changeLanguage} />
 
         <Route exact path="/" render={({ history }) => (
           <div>
+            <Profiles data={data} />
             <p>
               {translate.HELLO_WORLD}
             </p>

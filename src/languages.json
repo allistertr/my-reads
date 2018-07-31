@@ -14,7 +14,10 @@
     "WANT_TO_READ": "Whant to read",
     "PROFILE": "Profile",
     "SEARCH_BOOKS": "Search books",
-    "ADD_BOOK": "Add Book"
+    "ADD_BOOK": "Add Book",
+    "NO_IMAGE": "No image",
+    "NO_IMAGE_URL": "/no_image.png",
+    "UNKNOWN_AUTHOR": "Unknown author"
   },
   "pt": {
     "LANGUAGE_KEY": "pt",
@@ -31,7 +34,10 @@
     "WANT_TO_READ": "Quero ler",
     "PROFILE": "Perfil",
     "SEARCH_BOOKS": "Pesquisar Livros",
-    "ADD_BOOK": "Adicionar Livro"
+    "ADD_BOOK": "Adicionar Livro",
+    "NO_IMAGE": "Sem imagem",
+    "NO_IMAGE_URL": "/sem_imagem.png",
+    "UNKNOWN_AUTHOR": "Autor desconhecido"
   },
   "es": {
     "LANGUAGE_KEY": "es",
@@ -48,6 +54,9 @@
     "WANT_TO_READ": "Quiero leer",
     "PROFILE": "Perfil",
     "SEARCH_BOOKS": "Buscar libros",
-    "ADD_BOOK": "Añadir libro"
+    "ADD_BOOK": "Añadir libro",
+    "NO_IMAGE": "Sin imágen",
+    "NO_IMAGE_URL": "/sin_imagen.png",
+    "UNKNOWN_AUTHOR": ""
   }
 }
