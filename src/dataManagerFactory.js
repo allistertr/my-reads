@@ -1,0 +1,6 @@
+class DataManager {
+  constructor() {
+
+  }
+
+}

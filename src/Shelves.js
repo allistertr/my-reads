@@ -70,7 +70,7 @@ class Shelves extends React.Component {
                 </div>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Grid container alignItems="center" justify="center" spacing={16}>
+                <Grid container alignItems="center" justify="center" alignItems="flex-start" spacing={16}>
                   {shelf.books.map(book => (
                     <Grid item key={book.id} >
                       <Book book={book} translate={translate} />

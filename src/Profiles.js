@@ -12,6 +12,7 @@ import Dialog from '@material-ui/core/Dialog';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import TextField from '@material-ui/core/TextField';
 
 const options = [
   'None',
@@ -65,7 +66,7 @@ class ConfirmationDialogRaw extends React.Component {
   };
 
   render() {
-    const { value, ...other } = this.props;
+    const { translate, value, ...other } = this.props;
 
     return (
       <Dialog
@@ -76,8 +77,18 @@ class ConfirmationDialogRaw extends React.Component {
         aria-labelledby="confirmation-dialog-title"
         {...other}
       >
-        <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
+        <DialogTitle id="confirmation-dialog-title">{translate.WELCOME}</DialogTitle>
         <DialogContent>
+          <TextField
+            required
+            id="required"
+            label={translate.NAME}
+            defaultValue="Hello World"
+            // className={classes.textField}
+            margin="normal"
+          />
+
+          Nome
           <RadioGroup
             ref={ref => {
               this.radioGroupRef = ref;
@@ -139,35 +150,19 @@ class Profiles extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, data, translate } = this.props;
+    console.log('data no Profile.js', data)
     return (
       <div className={classes.root}>
-        <List>
-          <ListItem button divider disabled>
-            <ListItemText primary="Interruptions" />
-          </ListItem>
-          <ListItem
-            button
-            divider
-            aria-haspopup="true"
-            aria-controls="ringtone-menu"
-            aria-label="Phone ringtone"
-            onClick={this.handleClickListItem}
-          >
-            <ListItemText primary="Phone ringtone" secondary={this.state.value} />
-          </ListItem>
-          <ListItem button divider disabled>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItem>
           <ConfirmationDialogRaw
             classes={{
               paper: classes.paper,
             }}
-            open={this.state.open}
+            translate={translate}
+            open={data ? false : true}
             onClose={this.handleClose}
             value={this.state.value}
           />
-        </List>
       </div>
     );
   }

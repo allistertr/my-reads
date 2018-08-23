@@ -17,7 +17,9 @@
     "ADD_BOOK": "Add Book",
     "NO_IMAGE": "No image",
     "NO_IMAGE_URL": "/no_image.png",
-    "UNKNOWN_AUTHOR": "Unknown author"
+    "UNKNOWN_AUTHOR": "Unknown author",
+    "NO_BOOKS": "No books",
+    "NAME": "Name"
   },
   "pt": {
     "LANGUAGE_KEY": "pt",
@@ -37,7 +39,9 @@
     "ADD_BOOK": "Adicionar Livro",
     "NO_IMAGE": "Sem imagem",
     "NO_IMAGE_URL": "/sem_imagem.png",
-    "UNKNOWN_AUTHOR": "Autor desconhecido"
+    "UNKNOWN_AUTHOR": "Autor desconhecido",
+    "NO_BOOKS": "Sem livros.",
+    "NAME": "Nome"
   },
   "es": {
     "LANGUAGE_KEY": "es",
@@ -57,6 +61,8 @@
     "ADD_BOOK": "Añadir libro",
     "NO_IMAGE": "Sin imágen",
     "NO_IMAGE_URL": "/sin_imagen.png",
-    "UNKNOWN_AUTHOR": ""
+    "UNKNOWN_AUTHOR": "Autor desconocido",
+    "NO_BOOKS": "Sin libros",
+    "NAME": "Nombre"
   }
 }

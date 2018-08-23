@@ -7,6 +7,7 @@ export const create = (book={}, showOnSearch=false) => (
     shelf: book.shelf || 'none',
     pageCount: book.pageCount || '',
     description: book.description || '',
+    isManualInsertion: book.isManualInsertion || false,
     showOnSearch: showOnSearch
   }
 )

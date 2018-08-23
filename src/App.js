@@ -24,30 +24,61 @@ class App extends Component {
     super();
     this.data = StorageService.getData();
     this.state = {
-      translate: languages[DEFAULT_LANGUAGE_KEY],
-
+      translate: languages[this.data.profiles[this.data.currentProfile].language],
+      // translate: languages[DEFAULT_LANGUAGE_KEY],
       data: StorageService.getData(),
-      currentProfile: this.data.currentProfile,
       books: []
     };
 
     this.languagesLabels = Object.keys(languages).map(prototype => ({ key: prototype, label: languages[prototype].LANGUAGE_LABEL }));
     console.log(this.languagesLabels)
-    BooksAPI.getAll()
-      .then(books => {
-        let newBookTest = JSON.parse(JSON.stringify(books[0]));
-        newBookTest.imageLinks.thumbnail = 'https://s1.static.brasilescola.uol.com.br/artigos/Ra%C3%A7as-de-cachorros.jpg?i=https://brasilescola.uol.com.br/upload/e/Ra%C3%A7as-de-cachorros.jpg&w=600&h=350&c=FFFFFF&t=1'
-        newBookTest.id = '....1'
-        books.push(newBookTest);
-        books = books.map(book => BookFactory.create(book));
-        this.setState({ books })
-        console.log(books)
-      });
+    BooksAPI.search('ios').then(searchedBooks => this.addSearchedBooks(searchedBooks.map(s => {s.shelf = "read"; return s})));
     console.log(BooksAPI)
   }
 
   changeLanguage = language => {
-    this.setState({ translate: languages[language] });
+    let { data, translate } = this.state;
+    let profile = data.profiles[data.currentProfile];
+    let newLanguage = languages[language] ? language : DEFAULT_LANGUAGE_KEY;
+
+    profile.language = newLanguage;
+    data.profiles[data.currentProfile] = profile;
+
+    StorageService.saveData(data);
+
+    this.setState({ data, translate: languages[newLanguage] });
+  };
+
+  addSearchedBooks = (searchedBooks, searchText) => {
+    let { data, translate } = this.state;
+    let profile = data.profiles[data.currentProfile];
+    let { books } = profile;
+
+    searchedBooks.forEach(searchedBook => {
+      let bookFound = books.find(book => book.id === searchedBook.id);
+      if (bookFound) {
+        bookFound.show = true;
+        searchedBook = bookFound;
+      } else {
+        searchedBook = BookFactory.create({...searchedBook, show: true});
+        books.push(searchedBook);
+      }
+    });
+
+    // TODO: checks if other previously added books should be displayed in the search
+    searchText = 'test';
+    books = books.map(book => {
+      if (JSON.stringify(book).search(searchText))
+        book.show = true;
+      return book;
+    });
+
+    this.saveData(data);
+  }
+
+
+  changeBook = language => {
+
   };
 
   getLanguageByCurrentProfile = data => {
@@ -77,9 +108,10 @@ class App extends Component {
       <div>
         <MenuAppBar translate={translate} changeLanguage={this.changeLanguage} />
 
+        <Profiles data={data} translate={translate} open={data ? false : true} />
+
         <Route exact path="/" render={({ history }) => (
           <div>
-            <Profiles data={data} />
             <p>
               {translate.HELLO_WORLD}
             </p>
