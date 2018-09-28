@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import languages from './languages.json';
 import Profiles from './Profiles';
+import Search from './Search';
 import * as BooksAPI from './BooksAPI';
 import * as BookFactory from './BookFactory';
 import * as StorageService from './StorageService';
@@ -126,6 +127,7 @@ class App extends Component {
         )} />
         <Route path="/search" render={({ history }) => (
           <div>
+            <Search />
             <p>
               Search
             </p>
@@ -134,22 +136,6 @@ class App extends Component {
             >Home</Link>
           </div>
         )} />
-
-        <TextField
-          id="select-currency"
-          select
-          value={this.state.translate.LANGUAGE_KEY}
-          onChange={(event) => this.changeLanguage(event.target.value)}
-          margin="normal"
-        >
-          {this.languagesLabels.map(option => (
-            <MenuItem key={option.key} value={option.key}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-
-
       </div>
     );
   }

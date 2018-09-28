@@ -24,26 +24,30 @@ class Shelves extends React.Component {
     shelves: [
       {
         name: 'currentlyReading',
-        key: 'CURRENTLY_READING',
-        expanded: true
-      },
-      {
-        name: 'read',
-        key: 'READ',
+        displayed: true,
         expanded: true
       },
       {
         name: 'wantToRead',
-        key: 'WANT_TO_READ',
+        displayed: true,
         expanded: true
+      },
+      {
+        name: 'read',
+        displayed: true,
+        expanded: true
+      },
+      {
+        name: 'none',
+        displayed: false
       }
     ]
   };
 
-  changePanelExpansion = panelKey => {
+  changePanelExpansion = shelfName => {
     this.setState(state => ({
       shelves: state.shelves.map(shelf => {
-        if (shelf.key === panelKey) shelf.expanded = !shelf.expanded;
+        if (shelf.name === shelfName) shelf.expanded = !shelf.expanded;
         return shelf;
       })
     }));
@@ -52,6 +56,8 @@ class Shelves extends React.Component {
   render() {
     const { shelves } = this.state;
     const { classes, books, translate } = this.props;
+    const shelvesDisplayed = shelves.filter(shelf => shelf.displayed);
+    const shelvesNames = shelves.map(shelf => shelf.name);
 
     shelves.forEach(shelf => {
       shelf.books = books.filter(book => book.shelf === shelf.name);
@@ -59,13 +65,13 @@ class Shelves extends React.Component {
 
     return (
       <div>
-        {shelves.map(shelf => (
-          <div key={shelf.key} >
-            <ExpansionPanel expanded={shelf.expanded} onChange={() => { this.changePanelExpansion(shelf.key) }}>
+        {shelvesDisplayed.map(shelf => (
+          <div key={shelf.name} >
+            <ExpansionPanel expanded={shelf.expanded} onChange={() => { this.changePanelExpansion(shelf.name) }}>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <div style={{borderBottom: '1px solid', borderColor: 'grey', position: 'relative', top: 1, width:'100%'}}>
                   <Typography variant="title" gutterBottom>
-                    {translate[shelf.key]}
+                    {translate[shelf.name]}
                   </Typography>
                 </div>
               </ExpansionPanelSummary>
@@ -73,7 +79,7 @@ class Shelves extends React.Component {
                 <Grid container alignItems="center" justify="center" alignItems="flex-start" spacing={16}>
                   {shelf.books.map(book => (
                     <Grid item key={book.id} >
-                      <Book book={book} translate={translate} />
+                      <Book book={book} translate={translate} shelves={shelvesNames} />
                     </Grid>
                   ))}
                 </Grid>

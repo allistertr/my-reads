@@ -104,7 +104,7 @@ class MenuAppBar extends React.Component {
                   onClose={this.handleClose}
                 >
                   <MenuItem onClick={this.handleClose}>{translate.PROFILE}</MenuItem>
-                  <MenuItem onClick={() => { fileDownload(JSON.stringify([{ oi: 'tchau' }]), 'download.json'); }}>{'Download'}</MenuItem>
+                  <MenuItem onClick={() => { fileDownload(JSON.stringify([{ oi: 'tchau' }]), 'download.json'); }}>{'Backup'}</MenuItem>
                   <TextField
                     style={{ paddingLeft: 16, paddingRight: 16 }}
                     id="select-currency"
@@ -132,7 +132,7 @@ class MenuAppBar extends React.Component {
                   >
                     {/* {sideList} */}
                     <MenuItem onClick={this.handleClose}>{translate.PROFILE}</MenuItem>
-                  <MenuItem onClick={() => { fileDownload(JSON.stringify([{ oi: 'tchau' }]), 'download.json'); }}>{'Download'}</MenuItem>
+                  <MenuItem onClick={() => { fileDownload(JSON.stringify([{ oi: 'tchau' }]), 'download.json'); }}>{'Backup'}</MenuItem>
                   <TextField
                     style={{ paddingLeft: 16, paddingRight: 16 }}
                     id="select-currency"

@@ -8,10 +8,10 @@
     "BOOKS": "Books",
     "HELLO_WORLD": "Hello World!",
     "WELCOME": "Welcome!",
-    "NONE": "None",
-    "CURRENTLY_READING": "Currently reading",
-    "READ": "Read",
-    "WANT_TO_READ": "Whant to read",
+    "none": "None",
+    "currentlyReading": "Currently reading",
+    "read": "Read",
+    "wantToRead": "Whant to read",
     "PROFILE": "Profile",
     "SEARCH_BOOKS": "Search books",
     "ADD_BOOK": "Add Book",
@@ -19,7 +19,10 @@
     "NO_IMAGE_URL": "/no_image.png",
     "UNKNOWN_AUTHOR": "Unknown author",
     "NO_BOOKS": "No books",
-    "NAME": "Name"
+    "NAME": "Name",
+    "SHELF": "Shelf",
+    "EDIT": "Edit",
+    "VIEW": "View"
   },
   "pt": {
     "LANGUAGE_KEY": "pt",
@@ -30,10 +33,10 @@
     "BOOKS": "Livros",
     "HELLO_WORLD": "Olá Mundo!",
     "WELCOME": "Bem vindo!",
-    "NONE": "Nenhum",
-    "CURRENTLY_READING": "Lendo atualmente",
-    "READ": "Lido",
-    "WANT_TO_READ": "Quero ler",
+    "none": "Nenhum",
+    "currentlyReading": "Lendo atualmente",
+    "read": "Lido",
+    "wantToRead": "Quero ler",
     "PROFILE": "Perfil",
     "SEARCH_BOOKS": "Pesquisar Livros",
     "ADD_BOOK": "Adicionar Livro",
@@ -41,7 +44,10 @@
     "NO_IMAGE_URL": "/sem_imagem.png",
     "UNKNOWN_AUTHOR": "Autor desconhecido",
     "NO_BOOKS": "Sem livros.",
-    "NAME": "Nome"
+    "NAME": "Nome",
+    "SHELF": "Estante",
+    "EDIT": "Editar",
+    "VIEW": "Visualizar"
   },
   "es": {
     "LANGUAGE_KEY": "es",
@@ -52,10 +58,10 @@
     "BOOKS": "Libros",
     "HELLO_WORLD": "¡Hola mundo!",
     "WELCOME": "¡Bienvenido!",
-    "NONE": "Ninguna",
-    "CURRENTLY_READING": "Leyendo actualmente",
-    "READ": "Leído",
-    "WANT_TO_READ": "Quiero leer",
+    "none": "Ninguna",
+    "currentlyReading": "Leyendo actualmente",
+    "read": "Leído",
+    "wantToRead": "Quiero leer",
     "PROFILE": "Perfil",
     "SEARCH_BOOKS": "Buscar libros",
     "ADD_BOOK": "Añadir libro",
@@ -63,6 +69,9 @@
     "NO_IMAGE_URL": "/sin_imagen.png",
     "UNKNOWN_AUTHOR": "Autor desconocido",
     "NO_BOOKS": "Sin libros",
-    "NAME": "Nombre"
+    "NAME": "Nombre",
+    "SHELF": "Estante",
+    "EDIT": "Editar",
+    "VIEW": "Visualizar"
   }
 }

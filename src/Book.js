@@ -1,82 +1,103 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import TextField from '@material-ui/core/TextField';
+
 
 const styles = theme => ({
   card: {
-    maxWidth: 280,
+    maxWidth: 240,
   },
-  media: {
-    // width: 0,
-    // height: '100%',
-    // paddingTop: '158px', // 16:9
-  },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    marginLeft: 'auto',
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
+
 });
 
 class Book extends React.Component {
-  state = { expanded: false };
+  state = {
+    anchorEl: null
+  };
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
+  handleMenu = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
-    const { classes, book, translate } = this.props;
+    const { classes, book, shelves, translate } = this.props;
+    const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
 
     return (
       <div>
         <Card className={classes.card}>
+          <CardMedia
+            component="img"
+            className={classes.media}
+            // height="340"
+            width="240"
+            image={book.imageUrl || translate.NO_IMAGE_URL}
+            title="Contemplative Reptile"
+          />
           <CardHeader
             action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
+                <IconButton
+                  aria-owns={open ? 'book-options' : null}
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                >
+                  <MoreVertIcon />
+                </IconButton>
             }
             title={book.title}
             subheader={book.authors && book.authors.length ? book.authors.join(', ') : ''}
           />
-
-          <CardContent>
-            <img style={{width: '100%'}} src={book.imageUrl || translate.NO_IMAGE_URL} alt=""/>
-          </CardContent>
-
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-
-            </CardContent>
-          </Collapse>
         </Card>
+        <Menu
+          id="book-options"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={open}
+          onClose={this.handleClose}
+        >
+          <MenuItem onClick={this.handleClose}>{translate.VIEW}</MenuItem>
+          <div style={{ paddingLeft: 16, paddingRight: 16, outline: "none" }}>
+            <TextField
+              id="select-currency"
+              label={translate.SHELF}
+              select
+              value={book.shelf}
+              style={{ minWidth: 160 }}
+              // onChange={(event) => changeLanguage(event.target.value)}
+              margin="normal"
+            >
+              {shelves.map(shelfName => (
+                <MenuItem key={shelfName} value={shelfName}>
+                  {translate[shelfName]}
+                </MenuItem>
+              ))}
+            </TextField>
+          </div>
+        </Menu>
       </div>
     );
   }
